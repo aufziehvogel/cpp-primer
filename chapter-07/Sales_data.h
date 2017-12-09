@@ -2,14 +2,29 @@
 #define SALES_DATA_H
 
 #include <string>
+#include <iostream>
 
-struct Sales_data {
+class Sales_data {
+    friend Sales_data add(const Sales_data&, const Sales_data&);
+    friend std::ostream& print(std::ostream&, const Sales_data&);
+    friend std::istream& read(std::istream&, Sales_data&);
+
+public:
+    Sales_data() = default;
+    Sales_data(const std::string &isbn) : bookNo(isbn) { }
+    Sales_data(const std::string &isbn, unsigned int unitsSold,
+               double revenue) : bookNo(isbn), unitsSold(unitsSold),
+               revenue(revenue) { }
+    Sales_data(std::istream&);
+
     std::string isbn() const
     {
         return bookNo;
     }
 
     Sales_data& combine(const Sales_data&);
+
+private:
     double avgPrice() const;
 
     std::string bookNo;
