@@ -10,11 +10,23 @@ class Sales_data {
     friend std::istream& read(std::istream&, Sales_data&);
 
 public:
-    Sales_data() = default;
-    Sales_data(const std::string &isbn) : bookNo(isbn) { }
     Sales_data(const std::string &isbn, unsigned int unitsSold,
                double revenue) : bookNo(isbn), unitsSold(unitsSold),
-               revenue(revenue) { }
+               revenue(revenue)
+    {
+        std::cout << "Sales_data(const std::string&, unsigned, double) called" << std::endl;
+    }
+
+    Sales_data(const std::string &isbn) : Sales_data(isbn, 0, 0)
+    {
+        std::cout << "Sales_data(const std::string&) called" << std::endl;
+    }
+
+    Sales_data() : Sales_data("", 0, 0)
+    {
+        std::cout << "Sales_data() called" << std::endl;
+    }
+
     Sales_data(std::istream&);
 
     std::string isbn() const

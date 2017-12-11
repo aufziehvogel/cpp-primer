@@ -1,8 +1,10 @@
 #include "Sales_data.h"
 #include <iostream>
 
-Sales_data::Sales_data(std::istream &in)
+Sales_data::Sales_data(std::istream &in) : Sales_data()
 {
+    std::cout << "Sales_data(std::istream&) called" << std::endl;
+
     read(in, *this);
 }
 
