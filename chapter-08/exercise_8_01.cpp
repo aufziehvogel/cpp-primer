@@ -5,17 +5,17 @@ std::istream& read(std::istream &in)
     std::string text;
 
     std::string buf;
-    while (std::cin >> buf) {
+    while (in >> buf) {
         text += buf;
     }
 
     std::cout << text << std::endl;
 
-    if (std::cin.eof()) {
+    if (in.eof()) {
         std::cout << "EOF is set" << std::endl;
     }
 
-    std::cin.clear(std::cin.rdstate() & ~std::cin.eofbit);
+    in.clear(in.rdstate() & ~in.eofbit);
 
     return in;
 }
